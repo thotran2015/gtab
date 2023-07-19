@@ -21,13 +21,28 @@ This directory contains subdirectories for each application:
 ## Build
 
 ### Docker
-I use Rancher Desktop on my PC, just use docker instead of nerdctl if you use Docker desktop.
+#### Rancher Desktop
+I use Rancher Desktop on my PC, read Docker Desktop section if you use Docker desktop.
 
 From the toplevel directory of the repository, execute `nerdctl compose build --file docker-compose.yml`. Verify that your image was built via `nerdctl image ls`
 
 Start up the container with `nerdctl run -d -p 7777:7777`
 
 Find the name of the container using `nerdctl ps` and note the container name. When you're finished, execute `nerdctl kill <container_name>` to terminate the REST service.
+#### Docker Desktop
+Build and start up the gtab container with docker compose:
+```bash
+cd gtab
+docker compose up
+```
+Switch to another terminal window. List local images to see if gtab image is created:
+```bash
+docker image ls
+```
+Check if gtab container is running:
+```bash
+docker ps
+```
 
 ### Windows
 `build.bat` should be run from the toplevel directory of the repository. It cleans up then regenerates go.mod files, runs unit tests, and builds (but does not install) standalone executable applications in subdirectories under `cmd`.
